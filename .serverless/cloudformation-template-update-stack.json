@@ -193,7 +193,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630830968148-2021-09-05T08:36:08.148Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630840327060-2021-09-05T11:12:07.060Z/sls-app-sync.zip"
         },
         "Handler": "lib/mentee-handler.graphql",
         "Runtime": "nodejs12.x",
@@ -218,7 +218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630830968148-2021-09-05T08:36:08.148Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630840327060-2021-09-05T11:12:07.060Z/sls-app-sync.zip"
         },
         "Handler": "lib/mentor-handler.graphql",
         "Runtime": "nodejs12.x",
@@ -243,7 +243,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630830968148-2021-09-05T08:36:08.148Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630840327060-2021-09-05T11:12:07.060Z/sls-app-sync.zip"
         },
         "Handler": "lib/admin-handler.graphql",
         "Runtime": "nodejs12.x",
@@ -261,34 +261,34 @@
         "AdminLogGroup"
       ]
     },
-    "MenteeLambdaVersionyosRdbiTXR9T3NjVRw8AVmyPRfPbopfwKjK0o2KLWg": {
+    "MenteeLambdaVersionr5L6HhYAJnTQ9D35K4YbxLhtHllBVpQZ06uC7XzbDh0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MenteeLambdaFunction"
         },
-        "CodeSha256": "p//xbpxw0YM0356/LMqcls1H6b+snQhGwQ4+vsjTVlU="
+        "CodeSha256": "YvE9gM2KiJaJUNYLLGyG5cA4Jj3fHhGxYAp21xH6jDA="
       }
     },
-    "MentorLambdaVersionRuiQvFe9ldpkx5uiVJl2tNRGCIma22pc7uCENbXdUw": {
+    "MentorLambdaVersionLpwyHrxNe4a8XHkOPuiBaftowc7mgQQSOVFnLpu2EA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MentorLambdaFunction"
         },
-        "CodeSha256": "p//xbpxw0YM0356/LMqcls1H6b+snQhGwQ4+vsjTVlU="
+        "CodeSha256": "YvE9gM2KiJaJUNYLLGyG5cA4Jj3fHhGxYAp21xH6jDA="
       }
     },
-    "AdminLambdaVersionAys93fo4KsbrBt3EHL8PbwsAjGZtUklq6QLujUdr4": {
+    "AdminLambdaVersiono63j62vuwE0d7TIIS1pqRdHs5x0dYdq1dxzBCsDXGE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AdminLambdaFunction"
         },
-        "CodeSha256": "p//xbpxw0YM0356/LMqcls1H6b+snQhGwQ4+vsjTVlU="
+        "CodeSha256": "YvE9gM2KiJaJUNYLLGyG5cA4Jj3fHhGxYAp21xH6jDA="
       }
     },
     "AppSyncLambdaServiceRole": {
@@ -349,46 +349,46 @@
         ]
       }
     },
-    "MenteeapiGraphQlApi": {
+    "MenteeapidevGraphQlApi": {
       "Type": "AWS::AppSync::GraphQLApi",
       "Properties": {
-        "Name": "mentee-api",
+        "Name": "mentee-api-dev",
         "AuthenticationType": "API_KEY",
         "AdditionalAuthenticationProviders": [],
         "XrayEnabled": false
       }
     },
-    "MenteeapiGraphQlApiKeyDefault": {
+    "MenteeapidevGraphQlApiKeyDefault": {
       "Type": "AWS::AppSync::ApiKey",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "MenteeapiGraphQlApi",
+            "MenteeapidevGraphQlApi",
             "ApiId"
           ]
         },
         "Description": "Auto-generated api key",
-        "Expires": 1662364800
+        "Expires": 1662375600
       }
     },
-    "MenteeapiGraphQlSchema": {
+    "MenteeapidevGraphQlSchema": {
       "Type": "AWS::AppSync::GraphQLSchema",
       "Properties": {
         "Definition": "schema {\n  query: Query\n  mutation: Mutation\n  subscription: Subscription\n}\n\ntype Query {\n  getTodo(id: ID!): Todo\n  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection\n  getProgram(id: ID!): Program\n  listPrograms(filter: ModelProgramFilterInput, limit: Int, nextToken: String): ModelProgramConnection\n}\n\ntype CoAdmin {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput CoAdminInput {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput CreateProgramInput {\n  id: ID\n  projectID: String\n  organizationID: String!\n  departmentName: String\n  programName: String!\n  description: String!\n  websiteURL: String\n  programDetail: ProgramDetailInput\n  terms: [TermInput]!\n  coAdmins: [CoAdminInput]\n  mentors: [MentorInput]\n  preRequisiteTasks: [PreRequisiteTaskInput]\n  status: String!\n  createdAt: String\n  createdBy: String!\n  updatedAt: String\n  updatedBy: String\n}\n\ninput CreateTodoInput {\n  id: ID\n  name: String!\n  description: String\n}\n\ninput DeleteProgramInput {\n  id: ID!\n}\n\ninput DeleteTodoInput {\n  id: ID!\n}\n\ntype LearningObjective {\n  title: String!\n  text: String!\n}\n\ninput LearningObjectiveInput {\n  title: String!\n  text: String!\n}\n\ntype Mentor {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput MentorInput {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\nenum ModelAttributeTypes {\n  binary\n  binarySet\n  bool\n  list\n  map\n  number\n  numberSet\n  string\n  stringSet\n  _null\n}\n\ninput ModelBooleanInput {\n  ne: Boolean\n  eq: Boolean\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelFloatInput {\n  ne: Float\n  eq: Float\n  le: Float\n  lt: Float\n  ge: Float\n  gt: Float\n  between: [Float]\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelIDInput {\n  ne: ID\n  eq: ID\n  le: ID\n  lt: ID\n  ge: ID\n  gt: ID\n  contains: ID\n  notContains: ID\n  between: [ID]\n  beginsWith: ID\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n  size: ModelSizeInput\n}\n\ninput ModelIntInput {\n  ne: Int\n  eq: Int\n  le: Int\n  lt: Int\n  ge: Int\n  gt: Int\n  between: [Int]\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelProgramConditionInput {\n  projectID: ModelStringInput\n  organizationID: ModelStringInput\n  departmentName: ModelStringInput\n  programName: ModelStringInput\n  description: ModelStringInput\n  websiteURL: ModelStringInput\n  status: ModelStringInput\n  createdAt: ModelStringInput\n  createdBy: ModelStringInput\n  updatedAt: ModelStringInput\n  updatedBy: ModelStringInput\n  and: [ModelProgramConditionInput]\n  or: [ModelProgramConditionInput]\n  not: ModelProgramConditionInput\n}\n\ntype ModelProgramConnection {\n  items: [Program]\n  nextToken: String\n}\n\ninput ModelProgramFilterInput {\n  id: ModelIDInput\n  projectID: ModelStringInput\n  organizationID: ModelStringInput\n  departmentName: ModelStringInput\n  programName: ModelStringInput\n  description: ModelStringInput\n  websiteURL: ModelStringInput\n  status: ModelStringInput\n  createdAt: ModelStringInput\n  createdBy: ModelStringInput\n  updatedAt: ModelStringInput\n  updatedBy: ModelStringInput\n  and: [ModelProgramFilterInput]\n  or: [ModelProgramFilterInput]\n  not: ModelProgramFilterInput\n}\n\ninput ModelSizeInput {\n  ne: Int\n  eq: Int\n  le: Int\n  lt: Int\n  ge: Int\n  gt: Int\n  between: [Int]\n}\n\nenum ModelSortDirection {\n  ASC\n  DESC\n}\n\ninput ModelStringInput {\n  ne: String\n  eq: String\n  le: String\n  lt: String\n  ge: String\n  gt: String\n  contains: String\n  notContains: String\n  between: [String]\n  beginsWith: String\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n  size: ModelSizeInput\n}\n\ninput ModelTodoConditionInput {\n  name: ModelStringInput\n  description: ModelStringInput\n  and: [ModelTodoConditionInput]\n  or: [ModelTodoConditionInput]\n  not: ModelTodoConditionInput\n}\n\ntype ModelTodoConnection {\n  items: [Todo]\n  nextToken: String\n}\n\ninput ModelTodoFilterInput {\n  id: ModelIDInput\n  name: ModelStringInput\n  description: ModelStringInput\n  and: [ModelTodoFilterInput]\n  or: [ModelTodoFilterInput]\n  not: ModelTodoFilterInput\n}\n\ntype Mutation {\n  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo\n  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo\n  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo\n  createProgram(input: CreateProgramInput!, condition: ModelProgramConditionInput): Program\n  updateProgram(input: UpdateProgramInput!, condition: ModelProgramConditionInput): Program\n  deleteProgram(input: DeleteProgramInput!, condition: ModelProgramConditionInput): Program\n}\n\ntype PreRequisiteTask {\n  prerequisiteName: String!\n  dueDate: String\n  submission: String\n  submitFile: String\n  githubURL: String\n  description: String!\n  category: String!\n  custom: Boolean!\n}\n\ninput PreRequisiteTaskInput {\n  prerequisiteName: String!\n  dueDate: String\n  submission: String\n  submitFile: String\n  githubURL: String\n  description: String!\n  category: String!\n  custom: Boolean!\n}\n\ntype Program {\n  id: ID!\n  projectID: String\n  organizationID: String!\n  departmentName: String\n  programName: String!\n  description: String!\n  websiteURL: String\n  programDetail: ProgramDetail\n  terms: [Term]!\n  coAdmins: [CoAdmin]\n  mentors: [Mentor]\n  preRequisiteTasks: [PreRequisiteTask]\n  status: String!\n  createdAt: String!\n  createdBy: String!\n  updatedAt: String\n  updatedBy: String\n}\n\ntype ProgramDetail {\n  programLogoURL: String!\n  learningObjectives: [LearningObjective!]!\n  relevantLinks: [RelevantLink!]\n  requiredSkillsAndTechnologies: [String!]!\n  availableMenteeSpots: Float\n  publish: [Publish!]\n}\n\ninput ProgramDetailInput {\n  programLogoURL: String!\n  learningObjectives: [LearningObjectiveInput!]!\n  relevantLinks: [RelevantLinkInput!]\n  requiredSkillsAndTechnologies: [String!]!\n  availableMenteeSpots: Float\n  publish: [PublishInput!]\n}\n\ntype Publish {\n  publishTo: String!\n  url: String!\n}\n\ninput PublishInput {\n  publishTo: String!\n  url: String!\n}\n\ntype RelevantLink {\n  title: String!\n  url: String!\n}\n\ninput RelevantLinkInput {\n  title: String!\n  url: String!\n}\n\ntype Subscription {\n  onCreateTodo: Todo @aws_subscribe(mutations: [\"createTodo\"])\n  onUpdateTodo: Todo @aws_subscribe(mutations: [\"updateTodo\"])\n  onDeleteTodo: Todo @aws_subscribe(mutations: [\"deleteTodo\"])\n  onCreateProgram: Program @aws_subscribe(mutations: [\"createProgram\"])\n  onUpdateProgram: Program @aws_subscribe(mutations: [\"updateProgram\"])\n  onDeleteProgram: Program @aws_subscribe(mutations: [\"deleteProgram\"])\n}\n\ntype Term {\n  termName: String!\n  termStartDate: Float!\n  termEndDate: Float!\n  applicationAcceptanceStartDate: Float!\n  applicationAcceptanceEndDate: Float!\n}\n\ninput TermInput {\n  termName: String!\n  termStartDate: Float!\n  termEndDate: Float!\n  applicationAcceptanceStartDate: Float!\n  applicationAcceptanceEndDate: Float!\n}\n\ntype Todo {\n  id: ID!\n  name: String!\n  description: String\n  createdAt: AWSDateTime!\n  updatedAt: AWSDateTime!\n}\n\ninput UpdateProgramInput {\n  id: ID!\n  projectID: String\n  organizationID: String\n  departmentName: String\n  programName: String\n  description: String\n  websiteURL: String\n  programDetail: ProgramDetailInput\n  terms: [TermInput]\n  coAdmins: [CoAdminInput]\n  mentors: [MentorInput]\n  preRequisiteTasks: [PreRequisiteTaskInput]\n  status: String\n  createdAt: String\n  createdBy: String\n  updatedAt: String\n  updatedBy: String\n}\n\ninput UpdateTodoInput {\n  id: ID!\n  name: String\n  description: String\n}",
         "ApiId": {
           "Fn::GetAtt": [
-            "MenteeapiGraphQlApi",
+            "MenteeapidevGraphQlApi",
             "ApiId"
           ]
         }
       }
     },
-    "MenteeapiGraphQlDsawsLambdaDataSource": {
+    "MenteeapidevGraphQlDsawsLambdaDataSource": {
       "Type": "AWS::AppSync::DataSource",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "MenteeapiGraphQlApi",
+            "MenteeapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -411,13 +411,13 @@
         }
       }
     },
-    "MenteeapiGraphQlResolverQuerygetProgram": {
+    "MenteeapidevGraphQlResolverQuerygetProgram": {
       "Type": "AWS::AppSync::Resolver",
-      "DependsOn": "MenteeapiGraphQlSchema",
+      "DependsOn": "MenteeapidevGraphQlSchema",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "MenteeapiGraphQlApi",
+            "MenteeapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -428,52 +428,52 @@
         "Kind": "UNIT",
         "DataSourceName": {
           "Fn::GetAtt": [
-            "MenteeapiGraphQlDsawsLambdaDataSource",
+            "MenteeapidevGraphQlDsawsLambdaDataSource",
             "Name"
           ]
         }
       }
     },
-    "MentorapiGraphQlApi": {
+    "MentorapidevGraphQlApi": {
       "Type": "AWS::AppSync::GraphQLApi",
       "Properties": {
-        "Name": "mentor-api",
+        "Name": "mentor-api-dev",
         "AuthenticationType": "API_KEY",
         "AdditionalAuthenticationProviders": [],
         "XrayEnabled": false
       }
     },
-    "MentorapiGraphQlApiKeyDefault": {
+    "MentorapidevGraphQlApiKeyDefault": {
       "Type": "AWS::AppSync::ApiKey",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "MentorapiGraphQlApi",
+            "MentorapidevGraphQlApi",
             "ApiId"
           ]
         },
         "Description": "Auto-generated api key",
-        "Expires": 1662364800
+        "Expires": 1662375600
       }
     },
-    "MentorapiGraphQlSchema": {
+    "MentorapidevGraphQlSchema": {
       "Type": "AWS::AppSync::GraphQLSchema",
       "Properties": {
         "Definition": "schema {\n  query: Query\n  mutation: Mutation\n  subscription: Subscription\n}\n\ntype Query {\n  getTodo(id: ID!): Todo\n  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection\n  getProgram(id: ID!): Program\n  listPrograms(filter: ModelProgramFilterInput, limit: Int, nextToken: String): ModelProgramConnection\n}\n\ntype CoAdmin {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput CoAdminInput {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput CreateProgramInput {\n  id: ID\n  projectID: String\n  organizationID: String!\n  departmentName: String\n  programName: String!\n  description: String!\n  websiteURL: String\n  programDetail: ProgramDetailInput\n  terms: [TermInput]!\n  coAdmins: [CoAdminInput]\n  mentors: [MentorInput]\n  preRequisiteTasks: [PreRequisiteTaskInput]\n  status: String!\n  createdAt: String\n  createdBy: String!\n  updatedAt: String\n  updatedBy: String\n}\n\ninput CreateTodoInput {\n  id: ID\n  name: String!\n  description: String\n}\n\ninput DeleteProgramInput {\n  id: ID!\n}\n\ninput DeleteTodoInput {\n  id: ID!\n}\n\ntype LearningObjective {\n  title: String!\n  text: String!\n}\n\ninput LearningObjectiveInput {\n  title: String!\n  text: String!\n}\n\ntype Mentor {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput MentorInput {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\nenum ModelAttributeTypes {\n  binary\n  binarySet\n  bool\n  list\n  map\n  number\n  numberSet\n  string\n  stringSet\n  _null\n}\n\ninput ModelBooleanInput {\n  ne: Boolean\n  eq: Boolean\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelFloatInput {\n  ne: Float\n  eq: Float\n  le: Float\n  lt: Float\n  ge: Float\n  gt: Float\n  between: [Float]\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelIDInput {\n  ne: ID\n  eq: ID\n  le: ID\n  lt: ID\n  ge: ID\n  gt: ID\n  contains: ID\n  notContains: ID\n  between: [ID]\n  beginsWith: ID\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n  size: ModelSizeInput\n}\n\ninput ModelIntInput {\n  ne: Int\n  eq: Int\n  le: Int\n  lt: Int\n  ge: Int\n  gt: Int\n  between: [Int]\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelProgramConditionInput {\n  projectID: ModelStringInput\n  organizationID: ModelStringInput\n  departmentName: ModelStringInput\n  programName: ModelStringInput\n  description: ModelStringInput\n  websiteURL: ModelStringInput\n  status: ModelStringInput\n  createdAt: ModelStringInput\n  createdBy: ModelStringInput\n  updatedAt: ModelStringInput\n  updatedBy: ModelStringInput\n  and: [ModelProgramConditionInput]\n  or: [ModelProgramConditionInput]\n  not: ModelProgramConditionInput\n}\n\ntype ModelProgramConnection {\n  items: [Program]\n  nextToken: String\n}\n\ninput ModelProgramFilterInput {\n  id: ModelIDInput\n  projectID: ModelStringInput\n  organizationID: ModelStringInput\n  departmentName: ModelStringInput\n  programName: ModelStringInput\n  description: ModelStringInput\n  websiteURL: ModelStringInput\n  status: ModelStringInput\n  createdAt: ModelStringInput\n  createdBy: ModelStringInput\n  updatedAt: ModelStringInput\n  updatedBy: ModelStringInput\n  and: [ModelProgramFilterInput]\n  or: [ModelProgramFilterInput]\n  not: ModelProgramFilterInput\n}\n\ninput ModelSizeInput {\n  ne: Int\n  eq: Int\n  le: Int\n  lt: Int\n  ge: Int\n  gt: Int\n  between: [Int]\n}\n\nenum ModelSortDirection {\n  ASC\n  DESC\n}\n\ninput ModelStringInput {\n  ne: String\n  eq: String\n  le: String\n  lt: String\n  ge: String\n  gt: String\n  contains: String\n  notContains: String\n  between: [String]\n  beginsWith: String\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n  size: ModelSizeInput\n}\n\ninput ModelTodoConditionInput {\n  name: ModelStringInput\n  description: ModelStringInput\n  and: [ModelTodoConditionInput]\n  or: [ModelTodoConditionInput]\n  not: ModelTodoConditionInput\n}\n\ntype ModelTodoConnection {\n  items: [Todo]\n  nextToken: String\n}\n\ninput ModelTodoFilterInput {\n  id: ModelIDInput\n  name: ModelStringInput\n  description: ModelStringInput\n  and: [ModelTodoFilterInput]\n  or: [ModelTodoFilterInput]\n  not: ModelTodoFilterInput\n}\n\ntype Mutation {\n  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo\n  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo\n  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo\n  createProgram(input: CreateProgramInput!, condition: ModelProgramConditionInput): Program\n  updateProgram(input: UpdateProgramInput!, condition: ModelProgramConditionInput): Program\n  deleteProgram(input: DeleteProgramInput!, condition: ModelProgramConditionInput): Program\n}\n\ntype PreRequisiteTask {\n  prerequisiteName: String!\n  dueDate: String\n  submission: String\n  submitFile: String\n  githubURL: String\n  description: String!\n  category: String!\n  custom: Boolean!\n}\n\ninput PreRequisiteTaskInput {\n  prerequisiteName: String!\n  dueDate: String\n  submission: String\n  submitFile: String\n  githubURL: String\n  description: String!\n  category: String!\n  custom: Boolean!\n}\n\ntype Program {\n  id: ID!\n  projectID: String\n  organizationID: String!\n  departmentName: String\n  programName: String!\n  description: String!\n  websiteURL: String\n  programDetail: ProgramDetail\n  terms: [Term]!\n  coAdmins: [CoAdmin]\n  mentors: [Mentor]\n  preRequisiteTasks: [PreRequisiteTask]\n  status: String!\n  createdAt: String!\n  createdBy: String!\n  updatedAt: String\n  updatedBy: String\n}\n\ntype ProgramDetail {\n  programLogoURL: String!\n  learningObjectives: [LearningObjective!]!\n  relevantLinks: [RelevantLink!]\n  requiredSkillsAndTechnologies: [String!]!\n  availableMenteeSpots: Float\n  publish: [Publish!]\n}\n\ninput ProgramDetailInput {\n  programLogoURL: String!\n  learningObjectives: [LearningObjectiveInput!]!\n  relevantLinks: [RelevantLinkInput!]\n  requiredSkillsAndTechnologies: [String!]!\n  availableMenteeSpots: Float\n  publish: [PublishInput!]\n}\n\ntype Publish {\n  publishTo: String!\n  url: String!\n}\n\ninput PublishInput {\n  publishTo: String!\n  url: String!\n}\n\ntype RelevantLink {\n  title: String!\n  url: String!\n}\n\ninput RelevantLinkInput {\n  title: String!\n  url: String!\n}\n\ntype Subscription {\n  onCreateTodo: Todo @aws_subscribe(mutations: [\"createTodo\"])\n  onUpdateTodo: Todo @aws_subscribe(mutations: [\"updateTodo\"])\n  onDeleteTodo: Todo @aws_subscribe(mutations: [\"deleteTodo\"])\n  onCreateProgram: Program @aws_subscribe(mutations: [\"createProgram\"])\n  onUpdateProgram: Program @aws_subscribe(mutations: [\"updateProgram\"])\n  onDeleteProgram: Program @aws_subscribe(mutations: [\"deleteProgram\"])\n}\n\ntype Term {\n  termName: String!\n  termStartDate: Float!\n  termEndDate: Float!\n  applicationAcceptanceStartDate: Float!\n  applicationAcceptanceEndDate: Float!\n}\n\ninput TermInput {\n  termName: String!\n  termStartDate: Float!\n  termEndDate: Float!\n  applicationAcceptanceStartDate: Float!\n  applicationAcceptanceEndDate: Float!\n}\n\ntype Todo {\n  id: ID!\n  name: String!\n  description: String\n  createdAt: AWSDateTime!\n  updatedAt: AWSDateTime!\n}\n\ninput UpdateProgramInput {\n  id: ID!\n  projectID: String\n  organizationID: String\n  departmentName: String\n  programName: String\n  description: String\n  websiteURL: String\n  programDetail: ProgramDetailInput\n  terms: [TermInput]\n  coAdmins: [CoAdminInput]\n  mentors: [MentorInput]\n  preRequisiteTasks: [PreRequisiteTaskInput]\n  status: String\n  createdAt: String\n  createdBy: String\n  updatedAt: String\n  updatedBy: String\n}\n\ninput UpdateTodoInput {\n  id: ID!\n  name: String\n  description: String\n}",
         "ApiId": {
           "Fn::GetAtt": [
-            "MentorapiGraphQlApi",
+            "MentorapidevGraphQlApi",
             "ApiId"
           ]
         }
       }
     },
-    "MentorapiGraphQlDsawsLambdaDataSource": {
+    "MentorapidevGraphQlDsawsLambdaDataSource": {
       "Type": "AWS::AppSync::DataSource",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "MentorapiGraphQlApi",
+            "MentorapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -496,13 +496,13 @@
         }
       }
     },
-    "MentorapiGraphQlResolverQuerygetProgram": {
+    "MentorapidevGraphQlResolverQuerygetProgram": {
       "Type": "AWS::AppSync::Resolver",
-      "DependsOn": "MentorapiGraphQlSchema",
+      "DependsOn": "MentorapidevGraphQlSchema",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "MentorapiGraphQlApi",
+            "MentorapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -513,52 +513,52 @@
         "Kind": "UNIT",
         "DataSourceName": {
           "Fn::GetAtt": [
-            "MentorapiGraphQlDsawsLambdaDataSource",
+            "MentorapidevGraphQlDsawsLambdaDataSource",
             "Name"
           ]
         }
       }
     },
-    "AdminapiGraphQlApi": {
+    "AdminapidevGraphQlApi": {
       "Type": "AWS::AppSync::GraphQLApi",
       "Properties": {
-        "Name": "admin-api",
+        "Name": "admin-api-dev",
         "AuthenticationType": "API_KEY",
         "AdditionalAuthenticationProviders": [],
         "XrayEnabled": false
       }
     },
-    "AdminapiGraphQlApiKeyDefault": {
+    "AdminapidevGraphQlApiKeyDefault": {
       "Type": "AWS::AppSync::ApiKey",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlApi",
+            "AdminapidevGraphQlApi",
             "ApiId"
           ]
         },
         "Description": "Auto-generated api key",
-        "Expires": 1662364800
+        "Expires": 1662375600
       }
     },
-    "AdminapiGraphQlSchema": {
+    "AdminapidevGraphQlSchema": {
       "Type": "AWS::AppSync::GraphQLSchema",
       "Properties": {
         "Definition": "schema {\n  query: Query\n  mutation: Mutation\n  subscription: Subscription\n}\n\ntype Query {\n  getTodo(id: ID!): Todo\n  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection\n  getProgram(id: ID!): Program\n  listPrograms(filter: ModelProgramFilterInput, limit: Int, nextToken: String): ModelProgramConnection\n}\n\ntype CoAdmin {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput CoAdminInput {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput CreateProgramInput {\n  id: ID\n  projectID: String\n  organizationID: String!\n  departmentName: String\n  programName: String!\n  description: String!\n  websiteURL: String\n  programDetail: ProgramDetailInput\n  terms: [TermInput]!\n  coAdmins: [CoAdminInput]\n  mentors: [MentorInput]\n  preRequisiteTasks: [PreRequisiteTaskInput]\n  status: String!\n  createdAt: String\n  createdBy: String!\n  updatedAt: String\n  updatedBy: String\n}\n\ninput CreateTodoInput {\n  id: ID\n  name: String!\n  description: String\n}\n\ninput DeleteProgramInput {\n  id: ID!\n}\n\ninput DeleteTodoInput {\n  id: ID!\n}\n\ntype LearningObjective {\n  title: String!\n  text: String!\n}\n\ninput LearningObjectiveInput {\n  title: String!\n  text: String!\n}\n\ntype Mentor {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\ninput MentorInput {\n  firstName: String!\n  lastName: String!\n  imageUrl: String\n  email: String!\n  role: String\n  invitationStatus: String!\n  companyName: String\n  githubHandle: String\n  emailMessage: String!\n  userId: String!\n}\n\nenum ModelAttributeTypes {\n  binary\n  binarySet\n  bool\n  list\n  map\n  number\n  numberSet\n  string\n  stringSet\n  _null\n}\n\ninput ModelBooleanInput {\n  ne: Boolean\n  eq: Boolean\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelFloatInput {\n  ne: Float\n  eq: Float\n  le: Float\n  lt: Float\n  ge: Float\n  gt: Float\n  between: [Float]\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelIDInput {\n  ne: ID\n  eq: ID\n  le: ID\n  lt: ID\n  ge: ID\n  gt: ID\n  contains: ID\n  notContains: ID\n  between: [ID]\n  beginsWith: ID\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n  size: ModelSizeInput\n}\n\ninput ModelIntInput {\n  ne: Int\n  eq: Int\n  le: Int\n  lt: Int\n  ge: Int\n  gt: Int\n  between: [Int]\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n}\n\ninput ModelProgramConditionInput {\n  projectID: ModelStringInput\n  organizationID: ModelStringInput\n  departmentName: ModelStringInput\n  programName: ModelStringInput\n  description: ModelStringInput\n  websiteURL: ModelStringInput\n  status: ModelStringInput\n  createdAt: ModelStringInput\n  createdBy: ModelStringInput\n  updatedAt: ModelStringInput\n  updatedBy: ModelStringInput\n  and: [ModelProgramConditionInput]\n  or: [ModelProgramConditionInput]\n  not: ModelProgramConditionInput\n}\n\ntype ModelProgramConnection {\n  items: [Program]\n  nextToken: String\n}\n\ninput ModelProgramFilterInput {\n  id: ModelIDInput\n  projectID: ModelStringInput\n  organizationID: ModelStringInput\n  departmentName: ModelStringInput\n  programName: ModelStringInput\n  description: ModelStringInput\n  websiteURL: ModelStringInput\n  status: ModelStringInput\n  createdAt: ModelStringInput\n  createdBy: ModelStringInput\n  updatedAt: ModelStringInput\n  updatedBy: ModelStringInput\n  and: [ModelProgramFilterInput]\n  or: [ModelProgramFilterInput]\n  not: ModelProgramFilterInput\n}\n\ninput ModelSizeInput {\n  ne: Int\n  eq: Int\n  le: Int\n  lt: Int\n  ge: Int\n  gt: Int\n  between: [Int]\n}\n\nenum ModelSortDirection {\n  ASC\n  DESC\n}\n\ninput ModelStringInput {\n  ne: String\n  eq: String\n  le: String\n  lt: String\n  ge: String\n  gt: String\n  contains: String\n  notContains: String\n  between: [String]\n  beginsWith: String\n  attributeExists: Boolean\n  attributeType: ModelAttributeTypes\n  size: ModelSizeInput\n}\n\ninput ModelTodoConditionInput {\n  name: ModelStringInput\n  description: ModelStringInput\n  and: [ModelTodoConditionInput]\n  or: [ModelTodoConditionInput]\n  not: ModelTodoConditionInput\n}\n\ntype ModelTodoConnection {\n  items: [Todo]\n  nextToken: String\n}\n\ninput ModelTodoFilterInput {\n  id: ModelIDInput\n  name: ModelStringInput\n  description: ModelStringInput\n  and: [ModelTodoFilterInput]\n  or: [ModelTodoFilterInput]\n  not: ModelTodoFilterInput\n}\n\ntype Mutation {\n  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo\n  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo\n  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo\n  createProgram(input: CreateProgramInput!, condition: ModelProgramConditionInput): Program\n  updateProgram(input: UpdateProgramInput!, condition: ModelProgramConditionInput): Program\n  deleteProgram(input: DeleteProgramInput!, condition: ModelProgramConditionInput): Program\n}\n\ntype PreRequisiteTask {\n  prerequisiteName: String!\n  dueDate: String\n  submission: String\n  submitFile: String\n  githubURL: String\n  description: String!\n  category: String!\n  custom: Boolean!\n}\n\ninput PreRequisiteTaskInput {\n  prerequisiteName: String!\n  dueDate: String\n  submission: String\n  submitFile: String\n  githubURL: String\n  description: String!\n  category: String!\n  custom: Boolean!\n}\n\ntype Program {\n  id: ID!\n  projectID: String\n  organizationID: String!\n  departmentName: String\n  programName: String!\n  description: String!\n  websiteURL: String\n  programDetail: ProgramDetail\n  terms: [Term]!\n  coAdmins: [CoAdmin]\n  mentors: [Mentor]\n  preRequisiteTasks: [PreRequisiteTask]\n  status: String!\n  createdAt: String!\n  createdBy: String!\n  updatedAt: String\n  updatedBy: String\n}\n\ntype ProgramDetail {\n  programLogoURL: String!\n  learningObjectives: [LearningObjective!]!\n  relevantLinks: [RelevantLink!]\n  requiredSkillsAndTechnologies: [String!]!\n  availableMenteeSpots: Float\n  publish: [Publish!]\n}\n\ninput ProgramDetailInput {\n  programLogoURL: String!\n  learningObjectives: [LearningObjectiveInput!]!\n  relevantLinks: [RelevantLinkInput!]\n  requiredSkillsAndTechnologies: [String!]!\n  availableMenteeSpots: Float\n  publish: [PublishInput!]\n}\n\ntype Publish {\n  publishTo: String!\n  url: String!\n}\n\ninput PublishInput {\n  publishTo: String!\n  url: String!\n}\n\ntype RelevantLink {\n  title: String!\n  url: String!\n}\n\ninput RelevantLinkInput {\n  title: String!\n  url: String!\n}\n\ntype Subscription {\n  onCreateTodo: Todo @aws_subscribe(mutations: [\"createTodo\"])\n  onUpdateTodo: Todo @aws_subscribe(mutations: [\"updateTodo\"])\n  onDeleteTodo: Todo @aws_subscribe(mutations: [\"deleteTodo\"])\n  onCreateProgram: Program @aws_subscribe(mutations: [\"createProgram\"])\n  onUpdateProgram: Program @aws_subscribe(mutations: [\"updateProgram\"])\n  onDeleteProgram: Program @aws_subscribe(mutations: [\"deleteProgram\"])\n}\n\ntype Term {\n  termName: String!\n  termStartDate: Float!\n  termEndDate: Float!\n  applicationAcceptanceStartDate: Float!\n  applicationAcceptanceEndDate: Float!\n}\n\ninput TermInput {\n  termName: String!\n  termStartDate: Float!\n  termEndDate: Float!\n  applicationAcceptanceStartDate: Float!\n  applicationAcceptanceEndDate: Float!\n}\n\ntype Todo {\n  id: ID!\n  name: String!\n  description: String\n  createdAt: AWSDateTime!\n  updatedAt: AWSDateTime!\n}\n\ninput UpdateProgramInput {\n  id: ID!\n  projectID: String\n  organizationID: String\n  departmentName: String\n  programName: String\n  description: String\n  websiteURL: String\n  programDetail: ProgramDetailInput\n  terms: [TermInput]\n  coAdmins: [CoAdminInput]\n  mentors: [MentorInput]\n  preRequisiteTasks: [PreRequisiteTaskInput]\n  status: String\n  createdAt: String\n  createdBy: String\n  updatedAt: String\n  updatedBy: String\n}\n\ninput UpdateTodoInput {\n  id: ID!\n  name: String\n  description: String\n}",
         "ApiId": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlApi",
+            "AdminapidevGraphQlApi",
             "ApiId"
           ]
         }
       }
     },
-    "AdminapiGraphQlDsawsLambdaDataSource": {
+    "AdminapidevGraphQlDsawsLambdaDataSource": {
       "Type": "AWS::AppSync::DataSource",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlApi",
+            "AdminapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -581,13 +581,13 @@
         }
       }
     },
-    "AdminapiGraphQlResolverQuerygetProgram": {
+    "AdminapidevGraphQlResolverQuerygetProgram": {
       "Type": "AWS::AppSync::Resolver",
-      "DependsOn": "AdminapiGraphQlSchema",
+      "DependsOn": "AdminapidevGraphQlSchema",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlApi",
+            "AdminapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -598,19 +598,19 @@
         "Kind": "UNIT",
         "DataSourceName": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlDsawsLambdaDataSource",
+            "AdminapidevGraphQlDsawsLambdaDataSource",
             "Name"
           ]
         }
       }
     },
-    "AdminapiGraphQlResolverQuerylistPrograms": {
+    "AdminapidevGraphQlResolverQuerylistPrograms": {
       "Type": "AWS::AppSync::Resolver",
-      "DependsOn": "AdminapiGraphQlSchema",
+      "DependsOn": "AdminapidevGraphQlSchema",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlApi",
+            "AdminapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -621,19 +621,19 @@
         "Kind": "UNIT",
         "DataSourceName": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlDsawsLambdaDataSource",
+            "AdminapidevGraphQlDsawsLambdaDataSource",
             "Name"
           ]
         }
       }
     },
-    "AdminapiGraphQlResolverMutationcreateProgram": {
+    "AdminapidevGraphQlResolverMutationcreateProgram": {
       "Type": "AWS::AppSync::Resolver",
-      "DependsOn": "AdminapiGraphQlSchema",
+      "DependsOn": "AdminapidevGraphQlSchema",
       "Properties": {
         "ApiId": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlApi",
+            "AdminapidevGraphQlApi",
             "ApiId"
           ]
         },
@@ -644,7 +644,7 @@
         "Kind": "UNIT",
         "DataSourceName": {
           "Fn::GetAtt": [
-            "AdminapiGraphQlDsawsLambdaDataSource",
+            "AdminapidevGraphQlDsawsLambdaDataSource",
             "Name"
           ]
         }
@@ -663,7 +663,7 @@
     "MenteeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MenteeLambdaVersionyosRdbiTXR9T3NjVRw8AVmyPRfPbopfwKjK0o2KLWg"
+        "Ref": "MenteeLambdaVersionr5L6HhYAJnTQ9D35K4YbxLhtHllBVpQZ06uC7XzbDh0"
       },
       "Export": {
         "Name": "sls-sls-app-sync-dev-MenteeLambdaFunctionQualifiedArn"
@@ -672,7 +672,7 @@
     "MentorLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MentorLambdaVersionRuiQvFe9ldpkx5uiVJl2tNRGCIma22pc7uCENbXdUw"
+        "Ref": "MentorLambdaVersionLpwyHrxNe4a8XHkOPuiBaftowc7mgQQSOVFnLpu2EA"
       },
       "Export": {
         "Name": "sls-sls-app-sync-dev-MentorLambdaFunctionQualifiedArn"
@@ -681,111 +681,111 @@
     "AdminLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AdminLambdaVersionAys93fo4KsbrBt3EHL8PbwsAjGZtUklq6QLujUdr4"
+        "Ref": "AdminLambdaVersiono63j62vuwE0d7TIIS1pqRdHs5x0dYdq1dxzBCsDXGE"
       },
       "Export": {
         "Name": "sls-sls-app-sync-dev-AdminLambdaFunctionQualifiedArn"
       }
     },
-    "MenteeapiGraphQlApiKeyDefault": {
+    "MenteeapidevGraphQlApiKeyDefault": {
       "Value": {
         "Fn::GetAtt": [
-          "MenteeapiGraphQlApiKeyDefault",
+          "MenteeapidevGraphQlApiKeyDefault",
           "ApiKey"
         ]
       }
     },
-    "MenteeapiGraphQlApiId": {
+    "MenteeapidevGraphQlApiId": {
       "Value": {
         "Fn::GetAtt": [
-          "MenteeapiGraphQlApi",
+          "MenteeapidevGraphQlApi",
           "ApiId"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-MenteeapiGraphQlApiId"
+          "Fn::Sub": "${AWS::StackName}-MenteeapidevGraphQlApiId"
         }
       }
     },
-    "MenteeapiGraphQlApiUrl": {
+    "MenteeapidevGraphQlApiUrl": {
       "Value": {
         "Fn::GetAtt": [
-          "MenteeapiGraphQlApi",
+          "MenteeapidevGraphQlApi",
           "GraphQLUrl"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-MenteeapiGraphQlApiUrl"
+          "Fn::Sub": "${AWS::StackName}-MenteeapidevGraphQlApiUrl"
         }
       }
     },
-    "MentorapiGraphQlApiKeyDefault": {
+    "MentorapidevGraphQlApiKeyDefault": {
       "Value": {
         "Fn::GetAtt": [
-          "MentorapiGraphQlApiKeyDefault",
+          "MentorapidevGraphQlApiKeyDefault",
           "ApiKey"
         ]
       }
     },
-    "MentorapiGraphQlApiId": {
+    "MentorapidevGraphQlApiId": {
       "Value": {
         "Fn::GetAtt": [
-          "MentorapiGraphQlApi",
+          "MentorapidevGraphQlApi",
           "ApiId"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-MentorapiGraphQlApiId"
+          "Fn::Sub": "${AWS::StackName}-MentorapidevGraphQlApiId"
         }
       }
     },
-    "MentorapiGraphQlApiUrl": {
+    "MentorapidevGraphQlApiUrl": {
       "Value": {
         "Fn::GetAtt": [
-          "MentorapiGraphQlApi",
+          "MentorapidevGraphQlApi",
           "GraphQLUrl"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-MentorapiGraphQlApiUrl"
+          "Fn::Sub": "${AWS::StackName}-MentorapidevGraphQlApiUrl"
         }
       }
     },
-    "AdminapiGraphQlApiKeyDefault": {
+    "AdminapidevGraphQlApiKeyDefault": {
       "Value": {
         "Fn::GetAtt": [
-          "AdminapiGraphQlApiKeyDefault",
+          "AdminapidevGraphQlApiKeyDefault",
           "ApiKey"
         ]
       }
     },
-    "AdminapiGraphQlApiId": {
+    "AdminapidevGraphQlApiId": {
       "Value": {
         "Fn::GetAtt": [
-          "AdminapiGraphQlApi",
+          "AdminapidevGraphQlApi",
           "ApiId"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-AdminapiGraphQlApiId"
+          "Fn::Sub": "${AWS::StackName}-AdminapidevGraphQlApiId"
         }
       }
     },
-    "AdminapiGraphQlApiUrl": {
+    "AdminapidevGraphQlApiUrl": {
       "Value": {
         "Fn::GetAtt": [
-          "AdminapiGraphQlApi",
+          "AdminapidevGraphQlApi",
           "GraphQLUrl"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-AdminapiGraphQlApiUrl"
+          "Fn::Sub": "${AWS::StackName}-AdminapidevGraphQlApiUrl"
         }
       }
     }

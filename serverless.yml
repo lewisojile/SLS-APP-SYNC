@@ -31,17 +31,17 @@ provider:
         - 'arn:aws:dynamodb:${self:provider.region}:*:*'
 
 functions:
-  mentee:
+  mentee-appsync-handler:
     handler: lib/mentee-handler.graphql
-  mentor:
+  mentor-appsync-handler:
     handler: lib/mentor-handler.graphql
-  admin:
+  admin-appsync-handler:
     handler: lib/admin-handler.graphql
 
 custom:
   accountId: #{AWS::AccountId}
   appSync:
-    - name: mentee-api
+    - name: mentee-api-${self:provider.stage}
       authenticationType: API_KEY
       serviceRole: 'AppSyncServiceRole'
       mappingTemplates:
@@ -50,7 +50,7 @@ custom:
           field: getProgram
           request: 'getProgram-request-mapping-template.txt'
           response: 'getProgram-response-mapping-template.txt'
-      schema: # defaults schema.graphql
+      schema: './db/mentee/schema.graphql'
       dataSources:
         - type: AWS_LAMBDA
           name: awsLambdaDataSource
@@ -59,7 +59,7 @@ custom:
             lambdaFunctionArn: { Fn::GetAtt: [MenteeLambdaFunction, Arn] }
             serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
-    - name: mentor-api
+    - name: mentor-api-${self:provider.stage}
       authenticationType: API_KEY
       serviceRole: 'AppSyncServiceRole'
       mappingTemplates:
@@ -68,7 +68,7 @@ custom:
           field: getProgram
           request: 'getProgram-request-mapping-template.txt'
           response: 'getProgram-response-mapping-template.txt'
-      schema: # defaults schema.graphql
+      schema: './db/mentor/schema.graphql'
       dataSources:
         - type: AWS_LAMBDA
           name: awsLambdaDataSource
@@ -77,7 +77,7 @@ custom:
             lambdaFunctionArn: { Fn::GetAtt: [MentorLambdaFunction, Arn] }
             serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
-    - name: admin-api
+    - name: admin-api-${self:provider.stage}
       authenticationType: API_KEY
       serviceRole: 'AppSyncServiceRole'
       mappingTemplates:
@@ -98,7 +98,7 @@ custom:
           field: createProgram
           request: 'createProgram-request-mapping-template.txt'
           response: 'createProgram-response-mapping-template.txt'
-      schema: # defaults schema.graphql
+      schema: './db/admin/schema.graphql'
       dataSources:
         - type: AWS_LAMBDA
           name: awsLambdaDataSource
