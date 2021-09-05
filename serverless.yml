@@ -1,0 +1,140 @@
+service: sls-app-sync
+frameworkVersion: '2'
+variablesResolutionMode: 20210326
+
+plugins:
+  - serverless-appsync-plugin
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'appsync:GraphQL'
+      Resource: arn:aws:appsync:*
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - 'arn:aws:dynamodb:${self:provider.region}:*:*'
+
+functions:
+  mentee:
+    handler: lib/mentee-handler.graphql
+  mentor:
+    handler: lib/mentor-handler.graphql
+  admin:
+    handler: lib/admin-handler.graphql
+
+custom:
+  accountId: #{AWS::AccountId}
+  appSync:
+    - name: mentee-api
+      authenticationType: API_KEY
+      serviceRole: 'AppSyncServiceRole'
+      mappingTemplates:
+        - dataSource: awsLambdaDataSource
+          type: Query #Query, Mutation, Subscription
+          field: getProgram
+          request: 'getProgram-request-mapping-template.txt'
+          response: 'getProgram-response-mapping-template.txt'
+      schema: # defaults schema.graphql
+      dataSources:
+        - type: AWS_LAMBDA
+          name: awsLambdaDataSource
+          description: 'Lambda DataSource'
+          config:
+            lambdaFunctionArn: { Fn::GetAtt: [MenteeLambdaFunction, Arn] }
+            serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
+
+    - name: mentor-api
+      authenticationType: API_KEY
+      serviceRole: 'AppSyncServiceRole'
+      mappingTemplates:
+        - dataSource: awsLambdaDataSource
+          type: Query #Query, Mutation, Subscription
+          field: getProgram
+          request: 'getProgram-request-mapping-template.txt'
+          response: 'getProgram-response-mapping-template.txt'
+      schema: # defaults schema.graphql
+      dataSources:
+        - type: AWS_LAMBDA
+          name: awsLambdaDataSource
+          description: 'Lambda DataSource'
+          config:
+            lambdaFunctionArn: { Fn::GetAtt: [MentorLambdaFunction, Arn] }
+            serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
+
+    - name: admin-api
+      authenticationType: API_KEY
+      serviceRole: 'AppSyncServiceRole'
+      mappingTemplates:
+        - type: Query #Query, Mutation, Subscription
+          dataSource: awsLambdaDataSource
+          field: getProgram
+          request: 'getProgram-request-mapping-template.txt'
+          response: 'getProgram-response-mapping-template.txt'
+
+        - type: Query #Query, Mutation, Subscription
+          dataSource: awsLambdaDataSource
+          field: listPrograms
+          request: 'listPrograms-request-mapping-template.txt'
+          response: 'listPrograms-response-mapping-template.txt'
+
+        - type: Mutation #Query, Mutation, Subscription
+          dataSource: awsLambdaDataSource
+          field: createProgram
+          request: 'createProgram-request-mapping-template.txt'
+          response: 'createProgram-response-mapping-template.txt'
+      schema: # defaults schema.graphql
+      dataSources:
+        - type: AWS_LAMBDA
+          name: awsLambdaDataSource
+          description: 'Lambda DataSource'
+          config:
+            lambdaFunctionArn: { Fn::GetAtt: [AdminLambdaFunction, Arn] }
+            serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
+
+resources:
+  Resources:
+    # AppSync lambda role
+    AppSyncLambdaServiceRole:
+      Type: 'AWS::IAM::Role'
+      Properties:
+        RoleName: 'Lambda-${self:custom.appSync.0.serviceRole}'
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: 'Allow'
+              Principal:
+                Service:
+                  - 'appsync.amazonaws.com'
+              Action:
+                - 'sts:AssumeRole'
+        Policies:
+          - PolicyName: 'Lambda-${self:custom.appSync.0.serviceRole}-Policy'
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: 'Allow'
+                  Action:
+                    - 'lambda:invokeFunction'
+                  Resource:
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-mentor'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-mentor:*'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-mentee'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-mentee:*'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-admin'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-admin:*'
