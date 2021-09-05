@@ -1,5 +1,5 @@
 service: sls-app-sync
-frameworkVersion: "2"
+frameworkVersion: '2'
 variablesResolutionMode: 20210326
 
 plugins:
@@ -14,9 +14,9 @@ provider:
   region: us-east-1
 
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: 'Allow'
       Action:
-        - "appsync:GraphQL"
+        - 'appsync:GraphQL'
       Resource: arn:aws:appsync:*
     - Effect: Allow
       Action:
@@ -28,38 +28,36 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - "arn:aws:dynamodb:${self:provider.region}:*:*"
+        - 'arn:aws:dynamodb:${self:provider.region}:*:*'
 
 functions:
-  # Mentee Handler
   MenteeAppSyncHandler:
-    handler: lib/mentee-handler.graphql
+    handler: src/appsync/lib/mentee-handler.graphql
 
-  # Mentor Handler
   MentorAppSyncHandler:
-    handler: lib/mentor-handler.graphql
+    handler: src/appsync/lib/mentor-handler.graphql
 
-  # Admin Handler
   AdminAppSyncHandler:
-    handler: lib/admin-handler.graphql
+    handler: src/appsync/lib/admin-handler.graphql
 
 custom:
   accountId: #{AWS::AccountId}
   appSync:
     - name: mentee-api-${self:provider.stage}
       authenticationType: API_KEY
-      serviceRole: "AppSyncServiceRole"
+      serviceRole: 'AppSyncServiceRole'
+      mappingTemplatesLocation: './src/appsync'
       mappingTemplates:
         - dataSource: awsLambdaDataSource
           type: Query #Query, Mutation, Subscription
           field: getProgram
-          request: "getProgram-request-mapping-template.txt"
-          response: "getProgram-response-mapping-template.txt"
-      schema: "./db/mentee/schema.graphql"
+          request: 'mapping-templates/getProgram-request-mapping-template.txt'
+          response: 'mapping-templates/getProgram-response-mapping-template.txt'
+      schema: './src/appsync/db/mentee/schema.graphql'
       dataSources:
         - type: AWS_LAMBDA
           name: awsLambdaDataSource
-          description: "Lambda DataSource"
+          description: 'Lambda DataSource'
           config:
             lambdaFunctionArn:
               { Fn::GetAtt: [MenteeAppSyncHandlerLambdaFunction, Arn] }
@@ -67,18 +65,19 @@ custom:
 
     - name: mentor-api-${self:provider.stage}
       authenticationType: API_KEY
-      serviceRole: "AppSyncServiceRole"
+      serviceRole: 'AppSyncServiceRole'
+      mappingTemplatesLocation: './src/appsync'
       mappingTemplates:
         - dataSource: awsLambdaDataSource
           type: Query #Query, Mutation, Subscription
           field: getProgram
-          request: "getProgram-request-mapping-template.txt"
-          response: "getProgram-response-mapping-template.txt"
-      schema: "./db/mentor/schema.graphql"
+          request: 'mapping-templates/getProgram-request-mapping-template.txt'
+          response: 'mapping-templates/getProgram-response-mapping-template.txt'
+      schema: './src/appsync/db/mentor/schema.graphql'
       dataSources:
         - type: AWS_LAMBDA
           name: awsLambdaDataSource
-          description: "Lambda DataSource"
+          description: 'Lambda DataSource'
           config:
             lambdaFunctionArn:
               { Fn::GetAtt: [MentorAppSyncHandlerLambdaFunction, Arn] }
@@ -86,30 +85,31 @@ custom:
 
     - name: admin-api-${self:provider.stage}
       authenticationType: API_KEY
-      serviceRole: "AppSyncServiceRole"
+      serviceRole: 'AppSyncServiceRole'
+      mappingTemplatesLocation: './src/appsync'
       mappingTemplates:
         - type: Query #Query, Mutation, Subscription
           dataSource: awsLambdaDataSource
           field: getProgram
-          request: "getProgram-request-mapping-template.txt"
-          response: "getProgram-response-mapping-template.txt"
+          request: 'mapping-templates/getProgram-request-mapping-template.txt'
+          response: 'mapping-templates/getProgram-response-mapping-template.txt'
 
         - type: Query #Query, Mutation, Subscription
           dataSource: awsLambdaDataSource
           field: listPrograms
-          request: "listPrograms-request-mapping-template.txt"
-          response: "listPrograms-response-mapping-template.txt"
+          request: 'mapping-templates/listPrograms-request-mapping-template.txt'
+          response: 'mapping-templates/listPrograms-response-mapping-template.txt'
 
         - type: Mutation #Query, Mutation, Subscription
           dataSource: awsLambdaDataSource
           field: createProgram
-          request: "createProgram-request-mapping-template.txt"
-          response: "createProgram-response-mapping-template.txt"
-      schema: "./db/admin/schema.graphql"
+          request: 'mapping-templates/createProgram-request-mapping-template.txt'
+          response: 'mapping-templates/createProgram-response-mapping-template.txt'
+      schema: './src/appsync/db/admin/schema.graphql'
       dataSources:
         - type: AWS_LAMBDA
           name: awsLambdaDataSource
-          description: "Lambda DataSource"
+          description: 'Lambda DataSource'
           config:
             lambdaFunctionArn:
               { Fn::GetAtt: [AdminAppSyncHandlerLambdaFunction, Arn] }
@@ -119,30 +119,30 @@ resources:
   Resources:
     # AppSync lambda role
     AppSyncLambdaServiceRole:
-      Type: "AWS::IAM::Role"
+      Type: 'AWS::IAM::Role'
       Properties:
-        RoleName: "Lambda-${self:custom.appSync.0.serviceRole}"
+        RoleName: 'Lambda-${self:custom.appSync.0.serviceRole}'
         AssumeRolePolicyDocument:
-          Version: "2012-10-17"
+          Version: '2012-10-17'
           Statement:
-            - Effect: "Allow"
+            - Effect: 'Allow'
               Principal:
                 Service:
-                  - "appsync.amazonaws.com"
+                  - 'appsync.amazonaws.com'
               Action:
-                - "sts:AssumeRole"
+                - 'sts:AssumeRole'
         Policies:
-          - PolicyName: "Lambda-${self:custom.appSync.0.serviceRole}-Policy"
+          - PolicyName: 'Lambda-${self:custom.appSync.0.serviceRole}-Policy'
             PolicyDocument:
-              Version: "2012-10-17"
+              Version: '2012-10-17'
               Statement:
-                - Effect: "Allow"
+                - Effect: 'Allow'
                   Action:
-                    - "lambda:invokeFunction"
+                    - 'lambda:invokeFunction'
                   Resource:
-                    - "arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MentorAppSyncHandler"
-                    - "arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MentorAppSyncHandler:*"
-                    - "arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MenteeAppSyncHandler"
-                    - "arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MenteeAppSyncHandler:*"
-                    - "arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-AdminAppSyncHandler"
-                    - "arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-AdminAppSyncHandler:*"
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MentorAppSyncHandler'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MentorAppSyncHandler:*'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MenteeAppSyncHandler'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-MenteeAppSyncHandler:*'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-AdminAppSyncHandler'
+                    - 'arn:aws:lambda:${self:provider.region}:#{AWS::AccountId}:function:${self:service}-${self:provider.stage}-AdminAppSyncHandler:*'

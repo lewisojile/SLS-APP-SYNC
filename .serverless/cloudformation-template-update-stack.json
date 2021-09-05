@@ -193,9 +193,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630841894214-2021-09-05T11:38:14.214Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z/sls-app-sync.zip"
         },
-        "Handler": "lib/mentee-handler.graphql",
+        "Handler": "src/appsync/lib/mentee-handler.graphql",
         "Runtime": "nodejs12.x",
         "FunctionName": "sls-app-sync-dev-MenteeAppSyncHandler",
         "MemorySize": 1024,
@@ -218,9 +218,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630841894214-2021-09-05T11:38:14.214Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z/sls-app-sync.zip"
         },
-        "Handler": "lib/mentor-handler.graphql",
+        "Handler": "src/appsync/lib/mentor-handler.graphql",
         "Runtime": "nodejs12.x",
         "FunctionName": "sls-app-sync-dev-MentorAppSyncHandler",
         "MemorySize": 1024,
@@ -243,9 +243,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630841894214-2021-09-05T11:38:14.214Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z/sls-app-sync.zip"
         },
-        "Handler": "lib/admin-handler.graphql",
+        "Handler": "src/appsync/lib/admin-handler.graphql",
         "Runtime": "nodejs12.x",
         "FunctionName": "sls-app-sync-dev-AdminAppSyncHandler",
         "MemorySize": 1024,
@@ -261,34 +261,34 @@
         "AdminAppSyncHandlerLogGroup"
       ]
     },
-    "MenteeAppSyncHandlerLambdaVersion2eDOarIDJh4Rzps3xnwoxAp07PP2ZOsB2CqVc420j4": {
+    "MenteeAppSyncHandlerLambdaVersionD7a4OwmLLrc2HRXaaz1muMrq9wHXNLjegEnqZolgPY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MenteeAppSyncHandlerLambdaFunction"
         },
-        "CodeSha256": "yXXI55r8fHx/nzDRxPHaMLvnwm3fGAJAL0S2/ZWbcMA="
+        "CodeSha256": "MRxVLjCP5H273eSlv8S/XaBQGA7/XBp5tnAICeDLoAQ="
       }
     },
-    "MentorAppSyncHandlerLambdaVersionijPo2wz8D4z7Vdoz0r7FTmSFzEyzu3MZxHJW7MTpxBY": {
+    "MentorAppSyncHandlerLambdaVersionPXvQy71Fj37KMWsaA8h4jPsYzzu7XWrNinq3XpwKJo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MentorAppSyncHandlerLambdaFunction"
         },
-        "CodeSha256": "yXXI55r8fHx/nzDRxPHaMLvnwm3fGAJAL0S2/ZWbcMA="
+        "CodeSha256": "MRxVLjCP5H273eSlv8S/XaBQGA7/XBp5tnAICeDLoAQ="
       }
     },
-    "AdminAppSyncHandlerLambdaVersionkq5AAlaYuLfpZn7UgE624VLLRYoLmL7wW0Oiuqmvs": {
+    "AdminAppSyncHandlerLambdaVersionefHS7upvAPLFe1wSXnrGd1xpV87mlvOw0M8iMnNJCc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AdminAppSyncHandlerLambdaFunction"
         },
-        "CodeSha256": "yXXI55r8fHx/nzDRxPHaMLvnwm3fGAJAL0S2/ZWbcMA="
+        "CodeSha256": "MRxVLjCP5H273eSlv8S/XaBQGA7/XBp5tnAICeDLoAQ="
       }
     },
     "AppSyncLambdaServiceRole": {
@@ -368,7 +368,7 @@
           ]
         },
         "Description": "Auto-generated api key",
-        "Expires": 1662375600
+        "Expires": 1662379200
       }
     },
     "MenteeapidevGraphQlSchema": {
@@ -453,7 +453,7 @@
           ]
         },
         "Description": "Auto-generated api key",
-        "Expires": 1662375600
+        "Expires": 1662379200
       }
     },
     "MentorapidevGraphQlSchema": {
@@ -538,7 +538,7 @@
           ]
         },
         "Description": "Auto-generated api key",
-        "Expires": 1662375600
+        "Expires": 1662379200
       }
     },
     "AdminapidevGraphQlSchema": {
@@ -663,7 +663,7 @@
     "MenteeAppSyncHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MenteeAppSyncHandlerLambdaVersion2eDOarIDJh4Rzps3xnwoxAp07PP2ZOsB2CqVc420j4"
+        "Ref": "MenteeAppSyncHandlerLambdaVersionD7a4OwmLLrc2HRXaaz1muMrq9wHXNLjegEnqZolgPY"
       },
       "Export": {
         "Name": "sls-sls-app-sync-dev-MenteeAppSyncHandlerLambdaFunctionQualifiedArn"
@@ -672,7 +672,7 @@
     "MentorAppSyncHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MentorAppSyncHandlerLambdaVersionijPo2wz8D4z7Vdoz0r7FTmSFzEyzu3MZxHJW7MTpxBY"
+        "Ref": "MentorAppSyncHandlerLambdaVersionPXvQy71Fj37KMWsaA8h4jPsYzzu7XWrNinq3XpwKJo"
       },
       "Export": {
         "Name": "sls-sls-app-sync-dev-MentorAppSyncHandlerLambdaFunctionQualifiedArn"
@@ -681,7 +681,7 @@
     "AdminAppSyncHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AdminAppSyncHandlerLambdaVersionkq5AAlaYuLfpZn7UgE624VLLRYoLmL7wW0Oiuqmvs"
+        "Ref": "AdminAppSyncHandlerLambdaVersionefHS7upvAPLFe1wSXnrGd1xpV87mlvOw0M8iMnNJCc"
       },
       "Export": {
         "Name": "sls-sls-app-sync-dev-AdminAppSyncHandlerLambdaFunctionQualifiedArn"

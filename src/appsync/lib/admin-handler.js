@@ -1,12 +1,12 @@
-"use strict";
-const { createProgram } = require("../db/admin/mutations");
-const { listPrograms } = require("../db/admin/queries");
-const { ADMIN_MUTATION_ACTIONS } = require("../db/admin/constants");
+'use strict';
+const { createProgram } = require('../db/admin/mutations');
+const { listPrograms } = require('../db/admin/queries');
+const { ADMIN_MUTATION_ACTIONS } = require('../db/admin/constants');
 
 exports.graphql = async (event, context, callback) => {
   console.log(
-    "Got an Invoke Request.Received event {}",
-    JSON.stringify(event, 3)
+    'Got an Invoke Request.Received event {}',
+    JSON.stringify(event, 3),
   );
 
   switch (event.field) {
