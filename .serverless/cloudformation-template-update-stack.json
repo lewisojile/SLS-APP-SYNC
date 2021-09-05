@@ -71,22 +71,22 @@
         }
       }
     },
-    "MenteeLogGroup": {
+    "MenteeAppSyncHandlerLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/sls-app-sync-dev-mentee"
+        "LogGroupName": "/aws/lambda/sls-app-sync-dev-MenteeAppSyncHandler"
       }
     },
-    "MentorLogGroup": {
+    "MentorAppSyncHandlerLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/sls-app-sync-dev-mentor"
+        "LogGroupName": "/aws/lambda/sls-app-sync-dev-MentorAppSyncHandler"
       }
     },
-    "AdminLogGroup": {
+    "AdminAppSyncHandlerLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/sls-app-sync-dev-admin"
+        "LogGroupName": "/aws/lambda/sls-app-sync-dev-AdminAppSyncHandler"
       }
     },
     "IamRoleLambdaExecution": {
@@ -186,18 +186,18 @@
         }
       }
     },
-    "MenteeLambdaFunction": {
+    "MenteeAppSyncHandlerLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630840327060-2021-09-05T11:12:07.060Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630841894214-2021-09-05T11:38:14.214Z/sls-app-sync.zip"
         },
         "Handler": "lib/mentee-handler.graphql",
         "Runtime": "nodejs12.x",
-        "FunctionName": "sls-app-sync-dev-mentee",
+        "FunctionName": "sls-app-sync-dev-MenteeAppSyncHandler",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -208,21 +208,21 @@
         }
       },
       "DependsOn": [
-        "MenteeLogGroup"
+        "MenteeAppSyncHandlerLogGroup"
       ]
     },
-    "MentorLambdaFunction": {
+    "MentorAppSyncHandlerLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630840327060-2021-09-05T11:12:07.060Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630841894214-2021-09-05T11:38:14.214Z/sls-app-sync.zip"
         },
         "Handler": "lib/mentor-handler.graphql",
         "Runtime": "nodejs12.x",
-        "FunctionName": "sls-app-sync-dev-mentor",
+        "FunctionName": "sls-app-sync-dev-MentorAppSyncHandler",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -233,21 +233,21 @@
         }
       },
       "DependsOn": [
-        "MentorLogGroup"
+        "MentorAppSyncHandlerLogGroup"
       ]
     },
-    "AdminLambdaFunction": {
+    "AdminAppSyncHandlerLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-app-sync/dev/1630840327060-2021-09-05T11:12:07.060Z/sls-app-sync.zip"
+          "S3Key": "serverless/sls-app-sync/dev/1630841894214-2021-09-05T11:38:14.214Z/sls-app-sync.zip"
         },
         "Handler": "lib/admin-handler.graphql",
         "Runtime": "nodejs12.x",
-        "FunctionName": "sls-app-sync-dev-admin",
+        "FunctionName": "sls-app-sync-dev-AdminAppSyncHandler",
         "MemorySize": 1024,
         "Timeout": 6,
         "Role": {
@@ -258,37 +258,37 @@
         }
       },
       "DependsOn": [
-        "AdminLogGroup"
+        "AdminAppSyncHandlerLogGroup"
       ]
     },
-    "MenteeLambdaVersionr5L6HhYAJnTQ9D35K4YbxLhtHllBVpQZ06uC7XzbDh0": {
+    "MenteeAppSyncHandlerLambdaVersion2eDOarIDJh4Rzps3xnwoxAp07PP2ZOsB2CqVc420j4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "MenteeLambdaFunction"
+          "Ref": "MenteeAppSyncHandlerLambdaFunction"
         },
-        "CodeSha256": "YvE9gM2KiJaJUNYLLGyG5cA4Jj3fHhGxYAp21xH6jDA="
+        "CodeSha256": "yXXI55r8fHx/nzDRxPHaMLvnwm3fGAJAL0S2/ZWbcMA="
       }
     },
-    "MentorLambdaVersionLpwyHrxNe4a8XHkOPuiBaftowc7mgQQSOVFnLpu2EA": {
+    "MentorAppSyncHandlerLambdaVersionijPo2wz8D4z7Vdoz0r7FTmSFzEyzu3MZxHJW7MTpxBY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "MentorLambdaFunction"
+          "Ref": "MentorAppSyncHandlerLambdaFunction"
         },
-        "CodeSha256": "YvE9gM2KiJaJUNYLLGyG5cA4Jj3fHhGxYAp21xH6jDA="
+        "CodeSha256": "yXXI55r8fHx/nzDRxPHaMLvnwm3fGAJAL0S2/ZWbcMA="
       }
     },
-    "AdminLambdaVersiono63j62vuwE0d7TIIS1pqRdHs5x0dYdq1dxzBCsDXGE": {
+    "AdminAppSyncHandlerLambdaVersionkq5AAlaYuLfpZn7UgE624VLLRYoLmL7wW0Oiuqmvs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "AdminLambdaFunction"
+          "Ref": "AdminAppSyncHandlerLambdaFunction"
         },
-        "CodeSha256": "YvE9gM2KiJaJUNYLLGyG5cA4Jj3fHhGxYAp21xH6jDA="
+        "CodeSha256": "yXXI55r8fHx/nzDRxPHaMLvnwm3fGAJAL0S2/ZWbcMA="
       }
     },
     "AppSyncLambdaServiceRole": {
@@ -324,22 +324,22 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-mentor"
+                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-MentorAppSyncHandler"
                     },
                     {
-                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-mentor:*"
+                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-MentorAppSyncHandler:*"
                     },
                     {
-                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-mentee"
+                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-MenteeAppSyncHandler"
                     },
                     {
-                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-mentee:*"
+                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-MenteeAppSyncHandler:*"
                     },
                     {
-                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-admin"
+                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-AdminAppSyncHandler"
                     },
                     {
-                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-admin:*"
+                      "Fn::Sub": "arn:aws:lambda:us-east-1:${AWS::AccountId}:function:sls-app-sync-dev-AdminAppSyncHandler:*"
                     }
                   ]
                 }
@@ -404,7 +404,7 @@
         "LambdaConfig": {
           "LambdaFunctionArn": {
             "Fn::GetAtt": [
-              "MenteeLambdaFunction",
+              "MenteeAppSyncHandlerLambdaFunction",
               "Arn"
             ]
           }
@@ -489,7 +489,7 @@
         "LambdaConfig": {
           "LambdaFunctionArn": {
             "Fn::GetAtt": [
-              "MentorLambdaFunction",
+              "MentorAppSyncHandlerLambdaFunction",
               "Arn"
             ]
           }
@@ -574,7 +574,7 @@
         "LambdaConfig": {
           "LambdaFunctionArn": {
             "Fn::GetAtt": [
-              "AdminLambdaFunction",
+              "AdminAppSyncHandlerLambdaFunction",
               "Arn"
             ]
           }
@@ -660,31 +660,31 @@
         "Name": "sls-sls-app-sync-dev-ServerlessDeploymentBucketName"
       }
     },
-    "MenteeLambdaFunctionQualifiedArn": {
+    "MenteeAppSyncHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MenteeLambdaVersionr5L6HhYAJnTQ9D35K4YbxLhtHllBVpQZ06uC7XzbDh0"
+        "Ref": "MenteeAppSyncHandlerLambdaVersion2eDOarIDJh4Rzps3xnwoxAp07PP2ZOsB2CqVc420j4"
       },
       "Export": {
-        "Name": "sls-sls-app-sync-dev-MenteeLambdaFunctionQualifiedArn"
+        "Name": "sls-sls-app-sync-dev-MenteeAppSyncHandlerLambdaFunctionQualifiedArn"
       }
     },
-    "MentorLambdaFunctionQualifiedArn": {
+    "MentorAppSyncHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MentorLambdaVersionLpwyHrxNe4a8XHkOPuiBaftowc7mgQQSOVFnLpu2EA"
+        "Ref": "MentorAppSyncHandlerLambdaVersionijPo2wz8D4z7Vdoz0r7FTmSFzEyzu3MZxHJW7MTpxBY"
       },
       "Export": {
-        "Name": "sls-sls-app-sync-dev-MentorLambdaFunctionQualifiedArn"
+        "Name": "sls-sls-app-sync-dev-MentorAppSyncHandlerLambdaFunctionQualifiedArn"
       }
     },
-    "AdminLambdaFunctionQualifiedArn": {
+    "AdminAppSyncHandlerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AdminLambdaVersiono63j62vuwE0d7TIIS1pqRdHs5x0dYdq1dxzBCsDXGE"
+        "Ref": "AdminAppSyncHandlerLambdaVersionkq5AAlaYuLfpZn7UgE624VLLRYoLmL7wW0Oiuqmvs"
       },
       "Export": {
-        "Name": "sls-sls-app-sync-dev-AdminLambdaFunctionQualifiedArn"
+        "Name": "sls-sls-app-sync-dev-AdminAppSyncHandlerLambdaFunctionQualifiedArn"
       }
     },
     "MenteeapidevGraphQlApiKeyDefault": {
