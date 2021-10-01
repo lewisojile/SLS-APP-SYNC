@@ -28,6 +28,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Install Dependencies
+      run: npm install
     - name: serverless deploy dev
       uses: serverless/github-action@master
       with:
