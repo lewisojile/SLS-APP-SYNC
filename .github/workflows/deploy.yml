@@ -4,7 +4,16 @@
 name: Lewis SLS CI
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person to greet'
+        required: true
+        default: 'Mona the Octocat'
+      home:
+        description: 'location'
+        required: false
+        default: 'The Octoverse'
 
 jobs:
   deploy:
