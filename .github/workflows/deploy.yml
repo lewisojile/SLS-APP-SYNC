@@ -6,15 +6,14 @@ name: Lewis SLS CI
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: 'Person to greet'
+      ENV_LABEL:
+        description: Environment Label
         required: true
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
-
+        default: lewis
+      ENV_TYPE:
+        description: Environment Type
+        required: true
+        default: nonproduction
 jobs:
   deploy:
     name: deploy
