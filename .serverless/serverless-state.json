@@ -214,7 +214,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z/sls-app-sync.zip"
+                "S3Key": "serverless/sls-app-sync/dev/1630915846358-2021-09-06T08:10:46.358Z/sls-app-sync.zip"
               },
               "Handler": "src/appsync/lib/mentee-handler.graphql",
               "Runtime": "nodejs12.x",
@@ -239,7 +239,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z/sls-app-sync.zip"
+                "S3Key": "serverless/sls-app-sync/dev/1630915846358-2021-09-06T08:10:46.358Z/sls-app-sync.zip"
               },
               "Handler": "src/appsync/lib/mentor-handler.graphql",
               "Runtime": "nodejs12.x",
@@ -264,7 +264,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z/sls-app-sync.zip"
+                "S3Key": "serverless/sls-app-sync/dev/1630915846358-2021-09-06T08:10:46.358Z/sls-app-sync.zip"
               },
               "Handler": "src/appsync/lib/admin-handler.graphql",
               "Runtime": "nodejs12.x",
@@ -389,7 +389,7 @@
                 ]
               },
               "Description": "Auto-generated api key",
-              "Expires": 1662379200
+              "Expires": 1662451200
             }
           },
           "MenteeapidevGraphQlSchema": {
@@ -474,7 +474,7 @@
                 ]
               },
               "Description": "Auto-generated api key",
-              "Expires": 1662379200
+              "Expires": 1662451200
             }
           },
           "MentorapidevGraphQlSchema": {
@@ -559,7 +559,7 @@
                 ]
               },
               "Description": "Auto-generated api key",
-              "Expires": 1662379200
+              "Expires": 1662451200
             }
           },
           "AdminapidevGraphQlSchema": {
@@ -1128,7 +1128,7 @@
     "artifact": "/Users/mac/Projects/sls-app-sync/.serverless/sls-app-sync.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/sls-app-sync/dev/1630843884783-2021-09-05T12:11:24.783Z",
+    "artifactDirectoryName": "serverless/sls-app-sync/dev/1630915846358-2021-09-06T08:10:46.358Z",
     "artifact": "sls-app-sync.zip"
   }
 }
