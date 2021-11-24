@@ -25,7 +25,7 @@ jobs:
           EOF
 
       - name: Install Dependencies
-        run: cd API && npm install
+        run: cd API && npm install && echo ${{ secrets.DEV_AWS_ACCESS_KEY_ID }}
 
       - name: Serverless AWS authentication
         run: sls config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
