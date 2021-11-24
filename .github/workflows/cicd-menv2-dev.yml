@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Create Environment
         run: |
-          cat > API/env.yml << EOF
+          cat > env.yml << EOF
           ${{ secrets.DEV_ENV }}
           EOF
 
