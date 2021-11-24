@@ -15,8 +15,11 @@ jobs:
         with:
           node-version: '14.x'
 
+      - name: Change Directory
+        run: cd API
+
       - name: Install Serverless Framework
-        run: cd API && npm install -g serverless
+        run: npm install -g serverless
 
       - name: Setup Environment
         run: |
@@ -25,12 +28,12 @@ jobs:
           EOF
 
       - name: Install Dependencies
-        run: cd API && npm install
+        run: npm install
 
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
-          args: cd API && deploy --stage dev
+          args: deploy --stage dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
