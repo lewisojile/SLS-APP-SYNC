@@ -8,7 +8,7 @@ on:
 jobs:
   setup-workspace:
     runs-on: ubuntu-latest
-     steps:
+    steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
