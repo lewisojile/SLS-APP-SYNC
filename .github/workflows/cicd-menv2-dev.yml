@@ -23,15 +23,15 @@ jobs:
     steps:
       - name: Create Environment
         run: |
-          cat > env.yml << EOF
+          cat > API/env.yml << EOF
           ${{ secrets.DEV_ENV }}
           EOF
 
       - name: Install Dependencies
-        run: ls && pwd && npm install
+        run: cd API && npm install
 
       - name: Authenticate Serverless
-        run: cd mentorship-service && sls config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
+        run: cd API && sls config credentials --provider aws --key ${{ secrets.DEV_AWS_ACCESS_KEY_ID }} --secret ${{ secrets.DEV_AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy Lambda functions
-        run: cd mentorship-service && sls deploy -s dev
+        run: cd API && sls deploy -s dev
