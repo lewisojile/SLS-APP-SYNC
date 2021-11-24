@@ -33,6 +33,12 @@ provider:
 functions:
   MenteeAppSyncHandler:
     handler: src/appsync/lib/mentee-handler.graphql
+    environment:
+      DB_DATABASE: ${self:custom.rdsInstance.DB_DATABASE}
+      DB_HOST: ${self:custom.rdsInstance.DB_HOST}
+      DB_PASSWORD: ${self:custom.rdsInstance.DB_PASSWORD}
+      DB_PORT: ${self:custom.rdsInstance.DB_PORT}
+      DB_USERNAME: ${self:custom.rdsInstance.DB_USERNAME}
 
   MentorAppSyncHandler:
     handler: src/appsync/lib/mentor-handler.graphql
@@ -42,6 +48,7 @@ functions:
 
 custom:
   accountId: #{AWS::AccountId}
+  rdsInstance: ${file(env.yml):${self:provider.stage}, file(env.yml):dev}
   appSync:
     - name: mentee-api-${self:provider.stage}
       authenticationType: API_KEY
@@ -59,8 +66,7 @@ custom:
           name: awsLambdaDataSource
           description: 'Lambda DataSource'
           config:
-            lambdaFunctionArn:
-              { Fn::GetAtt: [MenteeAppSyncHandlerLambdaFunction, Arn] }
+            lambdaFunctionArn: { Fn::GetAtt: [MenteeAppSyncHandlerLambdaFunction, Arn] }
             serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
     - name: mentor-api-${self:provider.stage}
@@ -79,8 +85,7 @@ custom:
           name: awsLambdaDataSource
           description: 'Lambda DataSource'
           config:
-            lambdaFunctionArn:
-              { Fn::GetAtt: [MentorAppSyncHandlerLambdaFunction, Arn] }
+            lambdaFunctionArn: { Fn::GetAtt: [MentorAppSyncHandlerLambdaFunction, Arn] }
             serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
     - name: admin-api-${self:provider.stage}
@@ -111,8 +116,7 @@ custom:
           name: awsLambdaDataSource
           description: 'Lambda DataSource'
           config:
-            lambdaFunctionArn:
-              { Fn::GetAtt: [AdminAppSyncHandlerLambdaFunction, Arn] }
+            lambdaFunctionArn: { Fn::GetAtt: [AdminAppSyncHandlerLambdaFunction, Arn] }
             serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
 
 resources:
