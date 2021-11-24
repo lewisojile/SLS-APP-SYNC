@@ -22,10 +22,7 @@ jobs:
     needs: setup-workspace
     steps:
       - name: Create Environment
-        run: cd mentorship-service && |
-          cat > env.yml << EOF
-          ${{ secrets.DEV_ENV }}
-          EOF
+        run: cd mentorship-service && | cat > env.yml << EOF ${{ secrets.DEV_ENV }} EOF
 
       - name: Install Dependencies
         run: cd mentorship-service && npm install
