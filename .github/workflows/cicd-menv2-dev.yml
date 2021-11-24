@@ -21,7 +21,7 @@ jobs:
       - name: Setup Environment
         run: |
           cat > API/env.yml << EOF
-          ${{ secrets.ENV }}
+          ${{ secrets.DEV_ENV }}
           EOF
 
       - name: Install Dependencies
