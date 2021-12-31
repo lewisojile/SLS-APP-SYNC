@@ -10,6 +10,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
+  profile: serverless
   stage: ${opt:stage, 'dev'}
   region: us-east-1
 
