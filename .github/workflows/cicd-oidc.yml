@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  detect-cf-drift-uat:
+    name: 'Detect cloudformation stacks drifts (DEV)'
+    runs-on: ubuntu-latest
+    env:
+      SUBSYSTEM: lewis-dev
+      SCRIPT_RESOURCE_STORE: s3://cf-drift
+      VERSION: latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::515702969494:role/github-actions-Role-1BFMSDPWKJNPV
+          aws-region: us-east-2
+      - name: Scan For Cloudformation Drifts (DEV)
+        run: |
+          export ENV=dev
+          export REGION=us-east-1
+          export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query 'Account')
+          aws s3 cp $SCRIPT_RESOURCE_STORE/$VERSION.sh . --region us-east-1 &&  chmod u+x ./$VERSION.sh && ./$VERSION.sh
