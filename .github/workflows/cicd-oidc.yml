@@ -1,3 +1,4 @@
+name: OIDC Federation
 on:
   workflow_dispatch:
   push:
