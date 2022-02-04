@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::371000691729:role/GITHUB_ACCESS
+          role-to-assume: arn:aws:iam::371000691729:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AdministratorAccess_b8f4854835b64dfb
           aws-region: us-east-2
       - name: Scan For Cloudformation Drifts (DEV)
         run: |
